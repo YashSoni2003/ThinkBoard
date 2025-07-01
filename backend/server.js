@@ -1,27 +1,29 @@
 import express from "express";
 // const express = require("express");
 import notesRoutes from "./routes/notesRoutes.js";
+import { connectDB } from "./config/db.js";
+import dotenv from "dotenv";
+import rateLimiter from "./middleware/rateLimiter.js";
+
+dotenv.config();
 
 
 const app = express();
+const PORT = process.env.PORT || 3000;  
+
+//middleware
+app.use(express.json());
+app.use(rateLimiter);
+// app.use((req, res, next) => {        
+//   console.log(`${req.method} request for '${req.url}'`);
+//   next();
+// });
+
 app.use("/api/notes", notesRoutes);
 
-// app.get("/api/notes", (req, res) => {
-//   res.status(200).send("message received");
-// });
-
-// app.post("/api/notes", (req, res) => {
-//   res.status(201).json({message:"note created"});
-// });
-
-// app.put("/api/notes/:id", (req, res) => {
-//   res.status(200).json({message:"note updated"});
-// });
-
-// app.delete("/api/notes/:id", (req, res) => {
-//   res.status(200).json({message:"note deleted"});
-// });
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+connectDB().then(() => {
+  app.listen(PORT, () => {
+  console.log("Server is running on PORT", PORT );
+});
 });
  
