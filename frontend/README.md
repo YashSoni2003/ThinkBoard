@@ -1,12 +1,63 @@
-# React + Vite
+# 🧠 ThinkBoard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A full-stack note-taking app to organize your thoughts, built using the MERN stack.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 📝 Create, view, update, and delete notes
+- ⚡ Rate limiting to prevent abuse (using Upstash Redis)
+- 🌐 Fully responsive UI (TailwindCSS + DaisyUI)
+- 🔥 Toast notifications for actions and errors
+- ⚙️ Custom Axios client with dynamic base URL handling
+- 📦 Organized frontend/backend folder structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React + Vite
+- React Router
+- TailwindCSS + DaisyUI
+- Axios
+- React Hot Toast
+
+### Backend
+- Express.js
+- MongoDB with Mongoose
+- Upstash Redis for rate limiting
+- Dotenv for config
+- CORS enabled
+
+---
+
+## 📁 Folder Structure
+
+ThinkBoard/
+├── backend/
+│ ├── config/ # DB and Redis setup
+│ ├── controllers/ # Note controller logic
+│ ├── middleware/ # Rate limiter middleware
+│ ├── models/ # Mongoose models
+│ ├── routes/ # Express routes
+│ ├── .env # Environment config
+│ └── server.js # Entry point
+├── frontend/
+│ ├── src/
+│ │ ├── components/ # Navbar, Cards, etc.
+│ │ ├── pages/ # Home, CreateNote, etc.
+│ │ └── lib/ # Axios config
+│ └── index.html # Root HTML
+└── README.md
+
+
+⚙️ API Endpoints
+Method	 Endpoint	    Description
+GET	     /api/notes	     Get all notes
+POST	 /api/notes	     a new note
+GET	     /api/notes/:id	 note by ID
+PUT	     /api/notes/:id	 Update note
+DELETE	 /api/notes/:id	 Delete note
+
